@@ -1,8 +1,8 @@
-export interface ContainerProps {
-    width: string
-    height: string
-} 
-
 export interface RouterItemProps {
-    text: string
+  text: string;
+}
+
+export interface RiskProps {
+  name: string;
+  time: number;
 }

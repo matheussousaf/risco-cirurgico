@@ -1,21 +1,24 @@
 // import original module declarations
-import 'styled-components'
+import "styled-components";
 
 // and extend them!
-declare module 'styled-components' {
+declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
-      primary: string
-      secondary: string
-      white: string
-      black: string
-    },
+      primary: string;
+      secondary: string;
+      white: string;
+      black: string;
+      gray: string;
+      darkGray: string;
+    };
     device: {
-      mobileS: string
-      mobileM: string
-      mobileL: string
-      laptop: string
-      desktop: string
-    }
+      mobileS: string;
+      mobileM: string;
+      mobileL: string;
+      laptop: string;
+      desktop: string;
+    };
+    borderRadius: string;
   }
 }
