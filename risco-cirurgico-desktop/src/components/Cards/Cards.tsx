@@ -18,7 +18,7 @@ export const Card = styled.div`
   padding: 0 2rem;
   border-radius: ${(props) => props.theme.borderRadius};
   background: ${(props) => props.theme.colors.white};
-  box-shadow: 5px 5px 30px -30px #0C0C0C;
+  box-shadow: 5px 5px 30px -30px #0c0c0c;
   margin: 1rem;
 `;
 
@@ -28,4 +28,17 @@ export const FormCard = styled.form`
   display: block;
   margin: 0 0 2rem 0;
   border-radius: ${(props) => props.theme.borderRadius};
+
+  h3 {
+    text-transform: uppercase;
+    font-size: 20px;
+    margin: 0 1rem;
+    color: ${(props) => props.theme.colors.darkGray};
+  }
+
+  p {
+    color: ${(props) => props.theme.colors.darkGray};
+    font-size: 16px;
+    margin-bottom: auto;
+  }
 `;

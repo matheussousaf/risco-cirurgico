@@ -38,6 +38,7 @@ export const SelectMenu: FunctionComponent<SelectProps> = (props) => {
       placeholder={props.placeholder}
       options={props.options}
       noOptionsMessage={() => "Nenhum resultado"}
+      isMulti={props.isMulti}
     />
   );
 };
