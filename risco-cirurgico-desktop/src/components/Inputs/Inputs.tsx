@@ -1,49 +1,10 @@
 import styled from "styled-components";
 import React, { FunctionComponent } from "react";
-import { InputContainerProps, SelectProps } from "./types";
+import { InputButtonProps, SelectProps } from "./types";
 import { theme } from "../../styles/theme";
 import Select from "react-select";
-import { defaultProps } from "react-select/src/Select";
 
-export const SelectMenu: FunctionComponent<SelectProps> = (props) => {
-  const customStyles = {
-    container: (base: any, state: any) => ({
-      ...base,
-      fontSize: "18px",
-      fontFamily: "Signika Negative",
-      display: "inline-block",
-      width: props.width ?? "300px",
-      padding: "0 15px",
-    }),
-    control: (base: any, state: any) => ({
-      ...base,
-      border: `2px solid ${theme.colors.gray}`,
-      borderRadius: "10px",
-      padding: "3px",
-      boxShadow: "none",
-    }),
-  };
-
-  return (
-    <Select
-      theme={(baseTheme) => ({
-        ...baseTheme,
-        colors: {
-          ...baseTheme.colors,
-          primary: theme.colors.primary,
-          text: theme.colors.gray,
-        },
-      })}
-      styles={customStyles}
-      placeholder={props.placeholder}
-      options={props.options}
-      noOptionsMessage={() => "Nenhum resultado"}
-      isMulti={props.isMulti}
-    />
-  );
-};
-
-const InputContainer = styled.input<InputContainerProps>`
+const InputButton = styled.input<InputButtonProps>`
   padding: 20px;
   font-size: 18px;
   width: ${(props) => props.width};
@@ -55,7 +16,7 @@ const InputContainer = styled.input<InputContainerProps>`
   transition: 200ms 1 ease;
   -webkit-appearance: none;
   outline: none;
-  margin: 1rem;
+  margin: 5px 1rem 1rem 1rem;
   font-family: "Signika Negative", sans-serif;
 
   &:focus {
@@ -69,15 +30,75 @@ const InputContainer = styled.input<InputContainerProps>`
   }
 `;
 
-export const Input: FunctionComponent<InputContainerProps> = (props) => {
+const InputContainer = styled.div`
+  display: inline-block;
+  flex-direction: column;
+`;
+
+const LabelContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Input: FunctionComponent<InputButtonProps> = (props) => {
   return (
-    <InputContainer
-      placeholder={props.placeholder ?? "Placeholder"}
-      width={props.width ?? "200px"}
-    ></InputContainer>
+    <InputContainer>
+      <LabelContainer>
+        <Label>{props.title ?? "InputName"}</Label>
+        <InputButton value={props.value} onChange={(value) => props.onChange(value)} width={props.width ?? "200px"} />
+      </LabelContainer>
+    </InputContainer>
+  );
+};
+
+export const MenuSelect: FunctionComponent<SelectProps> = (props) => {
+  const customStyles = {
+    container: (base: any, state: any) => ({
+      ...base,
+      fontSize: "18px",
+      fontFamily: "Signika Negative",
+      display: "inline-block",
+      width: props.width ?? "300px",
+      padding: "5px 15px",
+    }),
+    control: (base: any, state: any) => ({
+      ...base,
+      border: `2px solid ${theme.colors.gray}`,
+      borderRadius: "10px",
+      padding: "3px",
+      boxShadow: "none",
+    }),
+  };
+  return (
+    <InputContainer>
+      <LabelContainer>
+        <Label>{props.title ?? "Input Name"}</Label>
+        <Select
+          theme={(baseTheme) => ({
+            ...baseTheme,
+            colors: {
+              ...baseTheme.colors,
+              primary: theme.colors.primary,
+              text: theme.colors.gray,
+            },
+          })}
+          value={props.value}
+          onChange={(event) => props.onChange(event)}
+          styles={customStyles}
+          placeholder={"Selecione..."}
+          options={props.options}
+          noOptionsMessage={() => "Nenhum resultado"}
+          isMulti={props.isMulti}
+        />
+      </LabelContainer>
+    </InputContainer>
   );
 };
 
 export const Label = styled.label`
-  font-size: 20px;
+  margin: 0 1rem;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: ${(props) => props.theme.colors.darkGray};
 `;

@@ -6,6 +6,7 @@ import { theme, GlobalStyle } from "./styles/theme";
 import SidebarMenu from "./components/Sidebar/Sidebar";
 import Risks from "./pages/Risks/Risks";
 import NewRisk from "./pages/NewRisk/NewRisk";
+import { NewRiskProvider } from "./contexts/new-risk";
 
 function App() {
   const [active, setActive] = useState(0);
@@ -15,17 +16,19 @@ function App() {
       <Router>
         <SidebarMenu active={active} setActive={setActive} />
         <GlobalStyle></GlobalStyle>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/risks">
-            <Risks />
-          </Route>
-          <Route path="/new-risk">
-            <NewRisk />
-          </Route>
-        </Switch>
+        <NewRiskProvider>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/risks">
+              <Risks />
+            </Route>
+            <Route path="/new-risk">
+              <NewRisk />
+            </Route>
+          </Switch>
+        </NewRiskProvider>
       </Router>
     </ThemeProvider>
   );
