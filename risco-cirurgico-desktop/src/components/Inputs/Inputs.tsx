@@ -4,7 +4,7 @@ import { InputButtonProps, SelectProps } from "./types";
 import { theme } from "../../styles/theme";
 import Select from "react-select";
 
-const InputButton = styled.input<InputButtonProps>`
+export const InputButton = styled.input<InputButtonProps>`
   padding: 20px;
   font-size: 18px;
   width: ${(props) => props.width};
