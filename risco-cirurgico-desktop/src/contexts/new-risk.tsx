@@ -12,7 +12,7 @@ export interface Risk {
   address: string;
   job: string;
   phoneNumber: string;
-  solicitantNumber: string;
+  solicitantDoctor: string;
   surgery: string;
   weight: number;
   height: number;

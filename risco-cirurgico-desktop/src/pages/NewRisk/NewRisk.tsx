@@ -63,23 +63,31 @@ const ClinicIdentification: FunctionComponent = (props) => {
         title="Gênero"
         options={sexValues}
         width="200px"
-        onChange={() => {}}
+        onChange={(event: any) => {
+          setRisk({...risk, sex: event.value})
+        }}
       />
       <Input
-        value={"test"}
-        onChange={() => {}}
+        value={risk.phoneNumber}
+        onChange={(event: any) => {
+          setRisk({ ...risk, phoneNumber: event.target.value})
+        }}
         title="Telefone"
         width="175px"
       />
       <Input
-        value={"test"}
-        onChange={() => {}}
+        value={risk.solicitantDoctor}
+        onChange={(event: any) => {
+          setRisk({ ...risk, solicitantDoctor: event.target.value})
+        }}
         title="Médico Solicitante"
         width="200px"
       />
       <Input
-        value={"test"}
-        onChange={() => {}}
+        value={risk.surgery}
+        onChange={(event: any) => {
+          setRisk({ ...risk, surgery: event.target.value})
+        }}
         title="Cirurgia Programada"
         width="400px"
       />
@@ -88,42 +96,55 @@ const ClinicIdentification: FunctionComponent = (props) => {
 };
 
 const PhisicalExam: FunctionComponent = (props) => {
+  const { risk, setRisk } = useNewRiskContext();
   return (
     <>
       <h3>Exame Físico / Biometria</h3>
       <Input
-        value={"test"}
-        onChange={() => {}}
+        value={risk.weight}
+        onChange={(event: any) => {
+          setRisk({ ...risk, weight: event.target.value})
+        }}
         title="Peso (kg)"
         width="100px"
       />
       <Input
-        value={"test"}
-        onChange={() => {}}
+        value={risk.height}
+        onChange={(event: any) => {
+          setRisk({ ...risk, height:event.value})
+        }}
         title="Altura (m)"
         width="100px"
       />
       <Input
-        value={"test"}
-        onChange={() => {}}
+        value={risk.imc}
+        onChange={(event: any) => {
+          setRisk({ ...risk, imc:event.value})
+        }}
         title="IMC (kg/m²)"
         width="100px"
       />
       <Input
-        value={"test"}
-        onChange={() => {}}
+        value={risk.generalState}
+        onChange={(event: any) => {
+          setRisk({ ...risk, generalState:event.value})
+        }}
         title="Estado geral"
         width="500px"
       />
       <Input
-        value={"test"}
-        onChange={() => {}}
+        value={risk.acvPaFc}
+        onChange={(event: any) => {
+          setRisk({ ...risk, acvPaFc:event.value})
+        }}
         title="ACV / PA / FC"
         width="150px"
       />
       <Input
-        value={"test"}
-        onChange={() => {}}
+        value={risk.arFrSato}
+        onChange={(event: any) => {
+          setRisk({ ...risk, arFrSato:event.value})
+        }}
         title="AR / FR / SatO2"
         width="175px"
       />
@@ -136,7 +157,7 @@ const HabitsAndPatholocigalHistory: FunctionComponent = (props) => {
     { value: "diabetes", label: "DM" },
     { value: "nega has", label: "NEGA HAS" },
   ];
-
+  const { risk, setRisk } = useNewRiskContext();
   return (
     <>
       <h3>Antecedentes Patológicos e Hábitos</h3>
@@ -144,19 +165,25 @@ const HabitsAndPatholocigalHistory: FunctionComponent = (props) => {
         title="Selecione..."
         options={pathologicalsValues}
         width="500px"
-        value={{ value: "teste", label: "teste" }}
-        onChange={() => {}}
+        value={{ value: "diabetes", label: "DM" }}
+        onChange={(event: any) => {
+          setRisk({ ...risk, pathologicalsValues:event.value})
+        }}
         isMulti
       />
       <Input
-        value={"test"}
-        onChange={() => {}}
+        value={risk.tabagism}
+        onChange={(event: any) => {
+          setRisk({ ...risk, tabagism:event.value})
+        }}
         title="Tabagismo*"
         width="500px"
       />
       <Input
-        value={"test"}
-        onChange={() => {}}
+        value={risk.etilism}
+        onChange={(event: any) => {
+          setRisk({ ...risk, etilism:event.value})
+        }}
         title="Etilismo*"
         width="425px"
       />
