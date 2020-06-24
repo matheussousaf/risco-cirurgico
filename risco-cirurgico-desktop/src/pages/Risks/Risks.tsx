@@ -14,6 +14,8 @@ const RisksContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  color: ${props => props.theme.colors.darkGray};
 `;
 
 const SearchBarContainer = styled.div`
@@ -28,6 +30,7 @@ const RiskContainer = styled.div`
   display: flex;
   padding: 40px;
   height: 40px;
+  width: 94%;
   margin: 10px;
   border-radius: ${(props) => props.theme.borderRadius};
   background: ${(props) => props.theme.colors.gray};
@@ -70,6 +73,7 @@ export default function Risks() {
                     <Risk />
                     <Risk />
                     <Risk />
+                    {/* <h2>Nenhum Risco Cadastrado.</h2> */}
                   </RisksContainer>
                 </HorizontalDivider>
               </VerticalDivider>

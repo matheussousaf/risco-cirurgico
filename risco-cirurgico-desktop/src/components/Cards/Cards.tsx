@@ -7,7 +7,6 @@ export const MainCard = styled.div`
   margin: 2rem;
   flex: 1;
   background: ${(props) => props.theme.colors.gray};
-  filter: brightness(0.97);
   color: ${(props) => props.theme.colors.black};
   flex-direction: column;
 `;

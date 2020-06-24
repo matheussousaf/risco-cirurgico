@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 
 const BasicContainer = styled.div`
-  background-color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.gray};
   padding-left: 5rem;
   display: flex;
   height: 100%;

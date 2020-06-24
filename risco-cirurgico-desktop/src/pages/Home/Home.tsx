@@ -89,7 +89,7 @@ export default function Home() {
         <VerticalDivider>
           <Card>
             <RecentRisks>
-              <h1>Riscos Recentes</h1>
+              <h1>Recentes</h1>
               <Risk name="Matheus de Sousa Figueirêdo" time={4} />
               <Risk name="Lukas de Sousa Figueirêdo" time={2} />
               <Risk name="Anna Júlia de Sousa Figueirêdo" time={3} />

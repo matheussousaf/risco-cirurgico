@@ -9,18 +9,19 @@ import { Input, MenuSelect } from "../../components/Inputs/Inputs";
 import styled from "styled-components";
 import { FormProps } from "./types";
 import { useNewRiskContext } from "../../contexts/new-risk";
+import { OptionTypeBase } from "react-select";
 
 // import { Container } from './styles';
 
 const ClinicIdentification: FunctionComponent = (props) => {
-  const { risk, setRisk } = useNewRiskContext();
+  const { currentRisk, setCurrentRisk, setRiskFormValues, riskFormValues } = useNewRiskContext();
 
-  const sexValues = [
+  const sexValues: OptionTypeBase[] = [
     { value: "masculino", label: "Masculino" },
     { value: "feminino", label: "Feminino" },
   ];
 
-  const jobsValues = [
+  const jobsValues: OptionTypeBase[] = [
     { value: "programador", label: "Programador" },
     { value: "medico", label: "Médico" },
   ];
@@ -28,17 +29,17 @@ const ClinicIdentification: FunctionComponent = (props) => {
     <>
       <h3>Identificação Clínica</h3>
       <Input
-        value={risk.name}
+        value={currentRisk.name}
         onChange={(event: any) => {
-          setRisk({ ...risk, name: event.target.value });
+          setCurrentRisk({ ...currentRisk, name: event.target.value });
         }}
         title="Nome"
         width="500px"
       />
       <Input
-        value={risk.birthDate}
+        value={currentRisk.birthDate}
         onChange={(event: any) => {
-          setRisk({ ...risk, birthDate: event.target.value})
+          setCurrentRisk({ ...currentRisk, birthDate: event.target.value });
         }}
         title="Data de Nascimento"
         width="150px"
@@ -46,15 +47,17 @@ const ClinicIdentification: FunctionComponent = (props) => {
       <MenuSelect
         title="Profissão"
         options={jobsValues}
+        value={riskFormValues.jobValues}
         width="300px"
         onChange={(event: any) => {
-          setRisk({...risk, job: event.value})
+          setCurrentRisk({ ...currentRisk, job: event.label });
+          setRiskFormValues({...riskFormValues, jobValues: event})
         }}
       />
       <Input
-        value={risk.address}
+        value={currentRisk.address}
         onChange={(event: any) => {
-          setRisk({ ...risk, address: event.target.value})
+          setCurrentRisk({ ...currentRisk, address: event.target.value });
         }}
         title="Endereço"
         width="400px"
@@ -62,31 +65,33 @@ const ClinicIdentification: FunctionComponent = (props) => {
       <MenuSelect
         title="Gênero"
         options={sexValues}
+        value={riskFormValues.sexValues}
         width="200px"
         onChange={(event: any) => {
-          setRisk({...risk, sex: event.value})
+          setCurrentRisk({ ...currentRisk, sex: event.value });
+          setRiskFormValues({...riskFormValues, sexValues: event})
         }}
       />
       <Input
-        value={risk.phoneNumber}
+        value={currentRisk.phoneNumber}
         onChange={(event: any) => {
-          setRisk({ ...risk, phoneNumber: event.target.value})
+          setCurrentRisk({ ...currentRisk, phoneNumber: event.target.value });
         }}
         title="Telefone"
         width="175px"
       />
       <Input
-        value={risk.solicitantDoctor}
+        value={currentRisk.solicitantDoctor}
         onChange={(event: any) => {
-          setRisk({ ...risk, solicitantDoctor: event.target.value})
+          setCurrentRisk({ ...currentRisk, solicitantDoctor: event.target.value });
         }}
         title="Médico Solicitante"
         width="200px"
       />
       <Input
-        value={risk.surgery}
+        value={currentRisk.surgery}
         onChange={(event: any) => {
-          setRisk({ ...risk, surgery: event.target.value})
+          setCurrentRisk({ ...currentRisk, surgery: event.target.value });
         }}
         title="Cirurgia Programada"
         width="400px"
@@ -96,54 +101,54 @@ const ClinicIdentification: FunctionComponent = (props) => {
 };
 
 const PhisicalExam: FunctionComponent = (props) => {
-  const { risk, setRisk } = useNewRiskContext();
+  const { currentRisk, setCurrentRisk } = useNewRiskContext();
   return (
     <>
       <h3>Exame Físico / Biometria</h3>
       <Input
-        value={risk.weight}
+        value={currentRisk.weight}
         onChange={(event: any) => {
-          setRisk({ ...risk, weight: event.target.value})
+          setCurrentRisk({ ...currentRisk, weight: Number.parseFloat(event.target.value) });
         }}
         title="Peso (kg)"
         width="100px"
       />
       <Input
-        value={risk.height}
+        value={currentRisk.height}
         onChange={(event: any) => {
-          setRisk({ ...risk, height:event.value})
+          setCurrentRisk({ ...currentRisk, height: Number.parseFloat(event.target.value) });
         }}
         title="Altura (m)"
         width="100px"
       />
       <Input
-        value={risk.imc}
+        value={currentRisk.imc}
         onChange={(event: any) => {
-          setRisk({ ...risk, imc:event.value})
+          setCurrentRisk({ ...currentRisk, imc: Number.parseFloat(event.target.value) });
         }}
         title="IMC (kg/m²)"
         width="100px"
       />
       <Input
-        value={risk.generalState}
+        value={currentRisk.generalState}
         onChange={(event: any) => {
-          setRisk({ ...risk, generalState:event.value})
+          setCurrentRisk({ ...currentRisk, generalState: event.target.value });
         }}
         title="Estado geral"
         width="500px"
       />
       <Input
-        value={risk.acvPaFc}
+        value={currentRisk.acvPaFc}
         onChange={(event: any) => {
-          setRisk({ ...risk, acvPaFc:event.value})
+          setCurrentRisk({ ...currentRisk, acvPaFc: event.target.value });
         }}
         title="ACV / PA / FC"
         width="150px"
       />
       <Input
-        value={risk.arFrSato}
+        value={currentRisk.arFrSato}
         onChange={(event: any) => {
-          setRisk({ ...risk, arFrSato:event.value})
+          setCurrentRisk({ ...currentRisk, arFrSato: event.target.value });
         }}
         title="AR / FR / SatO2"
         width="175px"
@@ -157,32 +162,37 @@ const HabitsAndPatholocigalHistory: FunctionComponent = (props) => {
     { value: "diabetes", label: "DM" },
     { value: "nega has", label: "NEGA HAS" },
   ];
-  const { risk, setRisk } = useNewRiskContext();
+  const { currentRisk, setCurrentRisk, riskFormValues, setRiskFormValues } = useNewRiskContext();
   return (
     <>
       <h3>Antecedentes Patológicos e Hábitos</h3>
       <MenuSelect
-        title="Selecione..."
+        title="Antecedentes Patológicos"
         options={pathologicalsValues}
         width="500px"
-        value={{ value: "diabetes", label: "DM" }}
+        value={riskFormValues.pathologicalValues}
         onChange={(event: any) => {
-          setRisk({ ...risk, pathologicalsValues:event.value})
+          const array = event && event.map((value: OptionTypeBase) => {
+            return value.label;
+          });
+          setCurrentRisk({ ...currentRisk, pathologicalsValues: array && array.join(', ') });
+          setRiskFormValues({...riskFormValues, pathologicalValues: event})
+          console.log(riskFormValues.pathologicalValues);
         }}
         isMulti
       />
       <Input
-        value={risk.tabagism}
+        value={currentRisk.tabagism}
         onChange={(event: any) => {
-          setRisk({ ...risk, tabagism:event.value})
+          setCurrentRisk({ ...currentRisk, tabagism: event.target.value });
         }}
         title="Tabagismo*"
         width="500px"
       />
       <Input
-        value={risk.etilism}
+        value={currentRisk.etilism}
         onChange={(event: any) => {
-          setRisk({ ...risk, etilism:event.value})
+          setCurrentRisk({ ...currentRisk, etilism: event.target.value });
         }}
         title="Etilismo*"
         width="425px"
@@ -254,7 +264,7 @@ export default function NewRisk() {
         <HorizontalDivider>
           <Card>
             <HorizontalDivider>
-              <h1>Novo risco</h1>
+              <h1>Novo Risco</h1>
               <VerticalDivider>
                 <MultiStepForm>
                   <Form active={currentPage} id={0}>

@@ -4,6 +4,7 @@ import React, {
   useContext,
   useState,
 } from "react";
+import { OptionTypeBase } from "react-select";
 
 export interface Risk {
   name: string;
@@ -53,20 +54,38 @@ export interface Risk {
   finalAvaliation: string;
 }
 
+interface RiskFormValues {
+  jobValues: OptionTypeBase;
+  sexValues: OptionTypeBase;
+  pathologicalValues: OptionTypeBase[];
+}
+
 interface NewRiskData {
-  risk: Risk;
-  setRisk: Function;
+  currentRisk: Risk;
+  setCurrentRisk: Function;
+  riskFormValues: RiskFormValues;
+  setRiskFormValues: Function;
   currentPage: number;
   setCurrentPage: Function;
 }
 
 export const NewRiskProvider: FunctionComponent = ({ children }) => {
-  const [risk, setRisk] = useState<Risk>({} as Risk);
+  const [currentRisk, setCurrentRisk] = useState<Risk>({} as Risk);
+  const [riskFormValues, setRiskFormValues] = useState<RiskFormValues>(
+    {} as RiskFormValues
+  );
   const [currentPage, setCurrentPage] = useState(0);
 
   return (
     <NewRiskContext.Provider
-      value={{ risk, setRisk, currentPage, setCurrentPage }}
+      value={{
+        currentRisk,
+        setCurrentRisk,
+        currentPage,
+        setCurrentPage,
+        riskFormValues,
+        setRiskFormValues,
+      }}
     >
       {children}
     </NewRiskContext.Provider>

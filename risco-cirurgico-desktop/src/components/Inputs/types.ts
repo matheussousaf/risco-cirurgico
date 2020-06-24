@@ -4,12 +4,12 @@ export interface InputButtonProps {
   width?: string;
   title?: string;
   onChange: Function;
-  value: string;
+  value: string | number;
 }
 
 export interface SelectProps {
   width?: string;
-  options: Array<Option>
+  options: OptionTypeBase[];
   title?: string;
   isMulti?: boolean;
   value?: OptionTypeBase;
@@ -17,6 +17,6 @@ export interface SelectProps {
 }
 
 interface Option {
-  label: string
-  value: string
+  label: string;
+  value: string;
 }
